@@ -40,10 +40,9 @@ export class CustomerTableComponent implements OnInit {
     if (this.customers.length > 0 && this.transactions.length > 0) {
       const customersTransactions: CustomerTransaction[] = this.customers.map(customer => ({
         customerName: customer.name,
-        totalTransactionAmount: this.getTotalTransactionAmount(customer.id)
+        totalTransactionAmount: this.getTotalTransactionAmount(customer.id),
+        customerId:customer.id
       }));
-
-      console.log(customersTransactions);
       
       this.dataSource.data = customersTransactions;
     }
@@ -59,7 +58,7 @@ export class CustomerTableComponent implements OnInit {
     return this.transactions.filter(t => t.customer_id === customerId).reduce((sum, t) => sum + t.amount, 0);
   }
   
-  onRowClick(customer:Customer){
-    this.router.navigate(['/transactions',customer.id])
+  onRowClick(customer:CustomerTransaction){
+    this.router.navigate(['/transactions',customer.customerId])
   }
 }

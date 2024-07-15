@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Customer } from '../models/customer.model';
 import { Observable } from 'rxjs';
 import { Transaction } from '../models/transaction.model';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private customersUrl = 'http://localhost:3000/customers';
-  private transactionsUrl = 'http://localhost:3000/transactions';
+  private customersUrl = environment.CUSTOMERS_URL;
+  private transactionsUrl = environment.TRANSACTIONS_URL;
 
   constructor(private http: HttpClient) { }
 
